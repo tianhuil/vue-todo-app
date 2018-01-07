@@ -44,7 +44,7 @@
       closeForm () {
         this.isCreating = false
       },
-      sendForm (todo) {
+      sendForm () {
         this.$emit('create-todo', {
           title: this.titleText,
           project: this.projectText,
