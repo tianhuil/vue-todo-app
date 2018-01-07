@@ -1,8 +1,12 @@
 <template>
   <div class="hello">
     <ul>
+      <p>Completed Tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
+      <p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
       <li v-for="todo in todos">
-        <b>{{todo.title}}</b> ({{todo.project}})
+        <div v-bind:class="{done: todo.done}">
+          <b>{{todo.title}}</b> ({{todo.project}})
+        </div>
       </li>
     </ul>
   </div>
@@ -10,28 +14,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      todos: [{
-        title: 'Todo A',
-        project: 'Project A',
-        done: false
-      }, {
-        title: 'Todo B',
-        project: 'Project B',
-        done: true
-      }, {
-        title: 'Todo C',
-        project: 'Project C',
-        done: false
-      }, {
-        title: 'Todo D',
-        project: 'Project D',
-        done: false
-      }]
-    }
-  }
+  props: ['todos']
 }
 </script>
 
@@ -47,7 +30,8 @@ ul {
 li {
   margin: 0 10px;
 }
-a {
-  color: #42b983;
+div.done {
+  text-decoration: line-through;
+  color: #b0b0b0;
 }
 </style>
